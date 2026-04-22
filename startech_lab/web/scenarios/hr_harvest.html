@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Data Harvest - StarTech Phishing</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="max-width: 600px; margin: 40px auto;">
+      <div class="card-title">HR Data Verification Portal</div>
+      
+      <div style="background: #1e293b; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+        <div style="color: #fbbf24; margin-bottom: 16px;">
+          Policy Update Acknowledgment Required
+        </div>
+        
+        <p style="margin-bottom: 16px;">Please verify your employment information to acknowledge the 2024 policy updates.</p>
+        
+        <form id="hrHarvestForm">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" class="form-control" id="fullName" placeholder="John Smith" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Employee ID</label>
+            <input type="text" class="form-control" id="empId" placeholder="EMP-12345" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Corporate Email</label>
+            <input type="email" class="form-control" id="corpEmail" placeholder="john.smith@startech.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Password (for verification)</label>
+            <input type="password" class="form-control" id="verifyPassword" placeholder="Enter password" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Social Security Number (Last 4)</label>
+            <input type="text" class="form-control" id="ssnLast4" placeholder="1234" maxlength="4" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="text" class="form-control" id="dobHarvest" placeholder="MM/DD/YYYY" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Home Address</label>
+            <input type="text" class="form-control" id="address" placeholder="Street Address" required>
+          </div>
+          
+          <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" class="form-control" id="city" placeholder="City" required>
+            </div>
+            <div class="form-group">
+              <label>State</label>
+              <input type="text" class="form-control" id="state" placeholder="State" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" class="form-control" id="phone" placeholder="(555) 555-5555" required>
+          </div>
+          
+          <div style="margin: 20px 0;">
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" required> I acknowledge that I have reviewed and accept the 2024 policy updates
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Verification</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <script src="../logger.js"></script>
+  <script>
+    document.getElementById('hrHarvestForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const fullName = document.getElementById('fullName').value;
+      const empId = document.getElementById('empId').value;
+      const email = document.getElementById('corpEmail').value;
+      const password = document.getElementById('verifyPassword').value;
+      const ssnLast4 = document.getElementById('ssnLast4').value;
+      const dob = document.getElementById('dobHarvest').value;
+      const address = document.getElementById('address').value;
+      const city = document.getElementById('city').value;
+      const state = document.getElementById('state').value;
+      const phone = document.getElementById('phone').value;
+      
+      PhishLogger.logCredential(email, password, 'hr_data_harvest');
+      PhishLogger.logActivity('hr_data_harvest_complete', {
+        full_name: fullName,
+        employee_id: empId,
+        ssn_last4_captured: ssnLast4.length === 4,
+        dob_captured: dob.length > 0,
+        address_captured: true,
+        phone_captured: true,
+        data_points: 9
+      });
+      
+      PhishLogger.logAlert('pii_data_captured', 'critical', 
+        `HR harvest captured PII for ${fullName} (${empId}) including SSN, DOB, address`);
+      
+      if (PhishLogger.isDefenseActive()) {
+        window.location.href = 'defended_attack.html';
+      } else {
+        alert('Verification complete. Thank you for updating your information.');
+        setTimeout(() => {
+          window.location.href = '../index.html';
+        }, 2000);
+      }
+    });
+    
+    PhishLogger.logActivity('hr_harvest_loaded', { scenario: 'hr_data_theft' });
+  </script>
+</body>
+</html>

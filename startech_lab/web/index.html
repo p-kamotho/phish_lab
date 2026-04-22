@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StarTech Lab - Phishing Simulation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>StarTech Group Solutions</h1>
+      <span class="badge">Phishing Simulation Lab 2c</span>
+    </div>
+
+    <div class="grid">
+      <!-- Attack Scenarios Panel -->
+      <div class="card">
+        <div class="card-title">Attack Scenarios</div>
+        <div class="nav" style="flex-direction: column;">
+          <a href="scenarios/finance_attack.html" class="nav-link">Finance Attack - Fake Invoice</a>
+          <a href="scenarios/hr_harvest.html" class="nav-link">HR Data Harvest</a>
+          <a href="scenarios/support_mass.html" class="nav-link">Support Mass SMS Attack</a>
+          <a href="scenarios/defended_attack.html" class="nav-link">Defended Attack (Blocked)</a>
+        </div>
+      </div>
+
+      <!-- Personas Panel -->
+      <div class="card">
+        <div class="card-title">Victim Personas</div>
+        <div class="nav" style="flex-direction: column;">
+          <a href="personas/cfo_view.html" class="nav-link">CFO (Finance) View</a>
+          <a href="personas/support_view.html" class="nav-link">Support Staff View</a>
+          <a href="personas/employee_view.html" class="nav-link">Employee View</a>
+        </div>
+      </div>
+
+      <!-- Platforms Panel -->
+      <div class="card">
+        <div class="card-title">Simulated Platforms</div>
+        <div class="nav" style="flex-direction: column;">
+          <a href="../platforms/gmail/inbox.html" class="nav-link">Gmail Inbox</a>
+          <a href="../platforms/whatsapp/chat.html" class="nav-link">WhatsApp Chat</a>
+          <a href="../platforms/instagram/feed.html" class="nav-link">Instagram Feed</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phishing Email Links -->
+    <div class="card">
+      <div class="card-title">Phishing Email Templates</div>
+      <div class="grid">
+        <div>
+          <h4 style="margin-bottom: 12px; color: #94a3b8;">Email Campaigns</h4>
+          <div class="nav" style="flex-direction: column;">
+            <a href="email/cfo_invoice.html" class="nav-link">CFO Invoice Request</a>
+            <a href="email/hr_update.html" class="nav-link">HR Policy Update</a>
+            <a href="email/it_reset.html" class="nav-link">IT Password Reset</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 12px; color: #94a3b8;">SMS Campaigns</h4>
+          <div class="nav" style="flex-direction: column;">
+            <a href="sms/account_lock.html" class="nav-link">Account Lock Alert</a>
+            <a href="sms/support_alert.html" class="nav-link">Support Escalation</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 12px; color: #94a3b8;">Login Portals</h4>
+          <div class="nav" style="flex-direction: column;">
+            <a href="login/microsoft.html" class="nav-link">Microsoft 365 Login</a>
+            <a href="login/hr_portal.html" class="nav-link">HR Portal Login</a>
+            <a href="login/bank.html" class="nav-link">Bank Portal Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="card">
+      <div class="card-title">Lab Status</div>
+      <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+        <div>
+          <div style="font-size: 0.85rem; color: #94a3b8;">Captured Credentials</div>
+          <div style="font-size: 2rem; font-weight: 600;" id="quickCredCount">0</div>
+        </div>
+        <div>
+          <div style="font-size: 0.85rem; color: #94a3b8;">Active Alerts</div>
+          <div style="font-size: 2rem; font-weight: 600;" id="quickAlertCount">0</div>
+        </div>
+        <div>
+          <div style="font-size: 0.85rem; color: #94a3b8;">Defense Status</div>
+          <div style="font-size: 1.2rem; font-weight: 500;" id="quickDefenseStatus">Monitoring</div>
+        </div>
+      </div>
+      <div style="margin-top: 20px;">
+        <a href="../it_dashboard/index.html" class="btn btn-primary">Access IT Defender Dashboard</a>
+        <button class="btn btn-outline" onclick="window.PhishLogger.exportLogs('credentials')">Export Credentials Log</button>
+      </div>
+    </div>
+
+    <!-- UML Sequence Reference -->
+    <div class="card">
+      <div class="card-title">Attack Sequence (UML)</div>
+      <div style="font-family: monospace; font-size: 0.9rem; color: #94a3b8;">
+        Attacker -> Platform -> Victim -> Phishing Server -> Logger -> Logs -> IT Defender<br>
+        <span style="color: #22c55e;">[DEFENSE PHASE]</span> Defender detects anomaly -> Activates Block -> Attack Defended
+      </div>
+    </div>
+  </div>
+
+  <script src="logger.js"></script>
+  <script>
+    // Update quick stats
+    function updateQuickStats() {
+      const creds = JSON.parse(localStorage.getItem('startech_phish_credentials_log') || '[]');
+      const alerts = JSON.parse(localStorage.getItem('startech_phish_alerts_log') || '[]');
+      const defenseActive = localStorage.getItem('startech_phish_defense_active') === 'active';
+      
+      document.getElementById('quickCredCount').textContent = creds.length;
+      document.getElementById('quickAlertCount').textContent = alerts.filter(a => !a.acknowledged).length;
+      document.getElementById('quickDefenseStatus').textContent = defenseActive ? 'ACTIVE - BLOCKING' : 'Monitoring';
+      document.getElementById('quickDefenseStatus').style.color = defenseActive ? '#22c55e' : '#94a3b8';
+    }
+    
+    window.addEventListener('load', updateQuickStats);
+    setInterval(updateQuickStats, 3000);
+  </script>
+</body>
+</html>

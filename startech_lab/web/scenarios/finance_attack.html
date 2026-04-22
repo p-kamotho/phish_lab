@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finance Attack - StarTech Phishing</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="max-width: 500px; margin: 50px auto;">
+      <div class="card-title text-center">Invoice Payment Portal</div>
+      
+      <div style="background: #ef4444; color: white; padding: 8px; border-radius: 6px; margin-bottom: 20px; font-size: 0.9rem;">
+        URGENT: Invoice #INV-2024-0892 requires immediate payment
+      </div>
+      
+      <div style="margin-bottom: 20px; padding: 16px; background: #0f172a; border-radius: 8px;">
+        <strong>Invoice Details:</strong><br>
+        Amount: $47,892.50<br>
+        Vendor: CloudTech Solutions<br>
+        Due Date: TODAY<br>
+        PO Number: PO-2024-1123
+      </div>
+      
+      <form id="phishForm">
+        <div class="form-group">
+          <label>Corporate Email</label>
+          <input type="email" class="form-control" id="email" placeholder="cfo@startech.com" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+        </div>
+        <div class="form-group">
+          <label>2FA Code (if enabled)</label>
+          <input type="text" class="form-control" id="mfa" placeholder="6-digit code">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Authorize Payment</button>
+      </form>
+      
+      <div style="margin-top: 20px; font-size: 0.85rem; color: #64748b; text-align: center;">
+        Secured by StarTech Finance Gateway
+      </div>
+    </div>
+  </div>
+
+  <script src="../logger.js"></script>
+  <script>
+    document.getElementById('phishForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const mfa = document.getElementById('mfa').value;
+      
+      // Log the captured credentials
+      PhishLogger.logCredential(email, password, 'finance_invoice_portal');
+      if (mfa) {
+        PhishLogger.logActivity('mfa_captured', { mfa_code: mfa });
+      }
+      
+      // Show success and redirect
+      alert('Payment authorization submitted. Processing...');
+      
+      // Check if defense is active
+      if (PhishLogger.isDefenseActive()) {
+        window.location.href = 'defended_attack.html';
+      } else {
+        window.location.href = '../index.html';
+      }
+    });
+    
+    PhishLogger.logActivity('finance_attack_loaded', { scenario: 'spear_phishing_cfo' });
+  </script>
+</body>
+</html>

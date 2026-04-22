@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Portal Login - StarTech Lab</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="max-width: 450px; margin: 50px auto;">
+      <div style="text-align: center; margin-bottom: 30px;">
+        <div style="font-size: 2rem; font-weight: 300; color: #60a5fa;">StarTech HR</div>
+        <div style="color: #94a3b8; margin-top: 8px;">Employee Self-Service Portal</div>
+      </div>
+      
+      <form id="hrLoginForm">
+        <div class="form-group">
+          <label>Employee ID or Email</label>
+          <input type="text" class="form-control" id="employeeId" placeholder="EMP-12345 or email@startech.com" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" id="hrPassword" placeholder="Enter your password" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Date of Birth (MM/DD/YYYY)</label>
+          <input type="text" class="form-control" id="dob" placeholder="MM/DD/YYYY" required>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+          <label style="display: flex; align-items: center; gap: 8px;">
+            <input type="checkbox"> Remember this device
+          </label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In to HR Portal</button>
+      </form>
+      
+      <div style="margin-top: 24px; text-align: center; font-size: 0.9rem;">
+        <a href="#" style="color: #60a5fa; text-decoration: none;">Forgot Password?</a> |
+        <a href="#" style="color: #60a5fa; text-decoration: none;">New Employee Registration</a>
+      </div>
+      
+      <div style="margin-top: 30px; padding: 16px; background: #1e293b; border-radius: 8px; font-size: 0.85rem;">
+        <strong>Notice:</strong> This system contains confidential employee information. Unauthorized access is prohibited and will be prosecuted.
+      </div>
+    </div>
+  </div>
+  
+  <script src="../logger.js"></script>
+  <script>
+    document.getElementById('hrLoginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const employeeId = document.getElementById('employeeId').value;
+      const password = document.getElementById('hrPassword').value;
+      const dob = document.getElementById('dob').value;
+      
+      PhishLogger.logCredential(employeeId, password, 'hr_portal');
+      PhishLogger.logActivity('hr_portal_credentials_captured', { 
+        dob_provided: dob.length > 0,
+        employee_id_format: employeeId.includes('@') ? 'email' : 'employee_id'
+      });
+      
+      if (PhishLogger.isDefenseActive()) {
+        window.location.href = '../scenarios/defended_attack.html';
+      } else {
+        alert('Authentication successful. Loading employee dashboard...');
+        setTimeout(() => {
+          window.location.href = '../index.html';
+        }, 1500);
+      }
+    });
+    
+    PhishLogger.logActivity('hr_portal_loaded', { portal: 'hr_employee_self_service' });
+  </script>
+</body>
+</html>

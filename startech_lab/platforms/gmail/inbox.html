@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gmail Inbox - StarTech Simulation</title>
+  <link rel="stylesheet" href="../../web/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="platform-header">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 32px; height: 32px; background: #ea4335; border-radius: 50%;"></div>
+        <div>
+          <h2 style="margin: 0;">Gmail</h2>
+          <div style="font-size: 0.85rem; color: #94a3b8;">cfo.executive@startech.com</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="message-bubble received" style="max-width: 100%;">
+        <div style="display: flex; justify-content: space-between;">
+          <strong>IT Security Team</strong>
+          <span style="color: #94a3b8;">10:23 AM</span>
+        </div>
+        <div style="margin-top: 8px;">
+          <strong>URGENT: Password Reset Required</strong><br>
+          Your Office 365 password expires in 2 hours. Click to reset:<br>
+          <a href="../../web/email/it_reset.html" style="color: #3b82f6; display: block; margin-top: 8px;">
+            Reset Microsoft 365 Password
+          </a>
+        </div>
+      </div>
+
+      <div class="message-bubble received" style="max-width: 100%; margin-top: 16px;">
+        <div style="display: flex; justify-content: space-between;">
+          <strong>Accounts Payable</strong>
+          <span style="color: #94a3b8;">9:45 AM</span>
+        </div>
+        <div style="margin-top: 8px;">
+          <strong>Invoice Approval Needed</strong><br>
+          Please review invoice from TechSolutions Inc.<br>
+          <a href="../../web/scenarios/finance_attack.html" style="color: #3b82f6; display: block; margin-top: 8px;">
+            Review Invoice #INV-2024-0892
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <a href="../../web/index.html" class="btn btn-outline">Return to Lab</a>
+  </div>
+
+  <script src="../../web/logger.js"></script>
+  <script>
+    PhishLogger.logActivity('gmail_inbox_accessed', { 
+      platform: 'gmail', 
+      persona: 'cfo' 
+    });
+  </script>
+</body>
+</html>

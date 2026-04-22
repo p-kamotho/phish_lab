@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Staff View - StarTech Lab</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Support Staff Console</h1>
+      <span class="badge">Tier 1 Support - Victim Persona</span>
+    </div>
+
+    <div class="card">
+      <div class="card-title">SMS Messages (Android)</div>
+      
+      <div class="message-bubble received">
+        <strong>+1 (888) 555-0123</strong><br>
+        <span style="font-size: 0.85rem; color: #94a3b8;">Just now</span>
+        <div style="margin-top: 8px;">
+          <strong>SECURITY ALERT: Account locked</strong><br>
+          Unusual login detected. Verify your account immediately:<br>
+          <a href="../sms/account_lock.html" class="link-preview" style="display: block; text-decoration: none; color: #60a5fa;">
+            https://startech-verify.com/unlock
+          </a>
+        </div>
+      </div>
+
+      <div class="message-bubble received" style="margin-top: 16px;">
+        <strong>IT Support (Internal)</strong><br>
+        <span style="font-size: 0.85rem; color: #94a3b8;">30 min ago</span>
+        <div style="margin-top: 8px;">
+          Support escalation ticket #8923 requires your attention.<br>
+          <a href="../sms/support_alert.html" class="link-preview" style="display: block; text-decoration: none; color: #60a5fa;">
+            View Ticket Details
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Active Tickets</div>
+      <div style="color: #94a3b8;">
+        <div>Open tickets: 12</div>
+        <div>Escalated: 3</div>
+        <div>SLA breaches: 1</div>
+      </div>
+    </div>
+
+    <a href="../index.html" class="btn btn-outline">Return to Lab</a>
+  </div>
+
+  <script src="../logger.js"></script>
+  <script>
+    PhishLogger.logActivity('support_view_accessed', { persona: 'support_staff', device: 'android_phone_1' });
+  </script>
+</body>
+</html>

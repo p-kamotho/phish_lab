@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Portal Login - StarTech Lab</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="max-width: 450px; margin: 50px auto;">
+      <div style="text-align: center; margin-bottom: 30px;">
+        <div style="font-size: 2rem; font-weight: 600; color: #22c55e;">First Business Bank</div>
+        <div style="color: #94a3b8; margin-top: 8px;">Corporate Banking Portal</div>
+      </div>
+      
+      <div class="alert alert-warning" style="margin-bottom: 20px;">
+        Enhanced security verification required due to new payment request.
+      </div>
+      
+      <form id="bankLoginForm">
+        <div class="form-group">
+          <label>Company ID</label>
+          <input type="text" class="form-control" id="companyId" placeholder="Enter Company ID" required>
+        </div>
+        
+        <div class="form-group">
+          <label>User ID</label>
+          <input type="text" class="form-control" id="userId" placeholder="Enter User ID" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" id="bankPassword" placeholder="Enter password" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Secure Token Code</label>
+          <input type="text" class="form-control" id="tokenCode" placeholder="6-digit code" required>
+          <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 4px;">
+            Enter the code from your security token
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-success" style="width: 100%; background: #22c55e;">Verify and Sign In</button>
+      </form>
+      
+      <div style="margin-top: 24px; padding: 12px; background: #0f172a; border-radius: 8px; font-size: 0.85rem;">
+        <strong>Pending Transaction Alert:</strong><br>
+        Wire Transfer: $47,892.50 to TechSolutions Inc.<br>
+        Status: Awaiting Authorization
+      </div>
+      
+      <div style="margin-top: 20px; text-align: center; font-size: 0.8rem; color: #64748b;">
+        Protected by 256-bit SSL Encryption | FDIC Insured
+      </div>
+    </div>
+  </div>
+  
+  <script src="../logger.js"></script>
+  <script>
+    document.getElementById('bankLoginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const companyId = document.getElementById('companyId').value;
+      const userId = document.getElementById('userId').value;
+      const password = document.getElementById('bankPassword').value;
+      const tokenCode = document.getElementById('tokenCode').value;
+      
+      PhishLogger.logCredential(userId, password, 'bank_portal');
+      PhishLogger.logActivity('bank_portal_credentials_captured', { 
+        company_id: companyId,
+        token_provided: tokenCode.length === 6,
+        transaction_amount: 47892.50
+      });
+      
+      PhishLogger.logAlert('financial_credentials_captured', 'high', 
+        'Bank credentials captured with token code for $47,892.50 transaction');
+      
+      if (PhishLogger.isDefenseActive()) {
+        window.location.href = '../scenarios/defended_attack.html';
+      } else {
+        alert('Authentication successful. Processing wire transfer authorization...');
+        setTimeout(() => {
+          window.location.href = '../index.html';
+        }, 2000);
+      }
+    });
+    
+    PhishLogger.logActivity('bank_portal_loaded', { portal: 'corporate_banking' });
+  </script>
+</body>
+</html>

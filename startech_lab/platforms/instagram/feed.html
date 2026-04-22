@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Feed - StarTech Simulation</title>
+  <link rel="stylesheet" href="../../web/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="platform-header">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="font-size: 1.5rem; font-weight: 600;">Instagram</div>
+        <div style="display: flex; gap: 16px;">
+          <span>+</span>
+          <span>❤</span>
+          <span>✉</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <div style="width: 40px; height: 40px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-radius: 50%;"></div>
+        <div>
+          <strong>startech_careers</strong><br>
+          <span style="font-size: 0.85rem; color: #94a3b8;">Sponsored</span>
+        </div>
+      </div>
+      
+      <div style="background: #1e293b; padding: 20px; border-radius: 8px; margin-bottom: 16px;">
+        <div style="margin-bottom: 16px;">
+          StarTech Group is hiring! We're looking for talented professionals to join our growing team.
+        </div>
+        
+        <div style="background: #0f172a; padding: 16px; border-radius: 8px;">
+          <strong>Current Openings:</strong><br>
+          - Senior DevOps Engineer<br>
+          - Security Analyst<br>
+          - Product Manager<br>
+          - HR Coordinator
+        </div>
+      </div>
+      
+      <div style="border-top: 1px solid #475569; padding-top: 16px;">
+        <div style="margin-bottom: 12px;">
+          <strong>startech_careers</strong> Apply now through our secure portal:
+        </div>
+        <a href="../../web/scenarios/hr_harvest.html" class="btn btn-primary" style="display: inline-block; text-decoration: none;">
+          Apply Here
+        </a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 16px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%;"></div>
+        <div>
+          <strong>technews_daily</strong><br>
+          <span style="font-size: 0.85rem; color: #94a3b8;">2 hours ago</span>
+        </div>
+      </div>
+      
+      <div style="background: #1e293b; padding: 20px; border-radius: 8px;">
+        Breaking: Major security vulnerability discovered in popular VPN software. Update immediately.
+        <a href="../../web/sms/account_lock.html" style="color: #60a5fa; display: block; margin-top: 12px;">
+          Read more about the security alert
+        </a>
+      </div>
+    </div>
+
+    <a href="../../web/index.html" class="btn btn-outline" style="margin-top: 20px;">Return to Lab</a>
+  </div>
+
+  <script src="../../web/logger.js"></script>
+  <script>
+    PhishLogger.logActivity('instagram_feed_accessed', { 
+      platform: 'instagram', 
+      persona: 'employee',
+      sponsored_content_viewed: true
+    });
+    
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (link.href.includes('scenarios/') || link.href.includes('sms/')) {
+          PhishLogger.logActivity('instagram_phishing_click', {
+            destination: link.href,
+            campaign: 'social_media_phishing'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Defender Dashboard - StarTech Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>IT Defender Console</h1>
+      <span class="badge">Kali Linux - Security Operations</span>
+    </div>
+
+    <!-- Defense Status Bar -->
+    <div class="card" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <div style="font-size: 0.85rem; color: #94a3b8;">DEFENSE STATUS</div>
+          <div style="font-size: 1.5rem; font-weight: 600;" id="defenseStatus">Loading...</div>
+        </div>
+        <div>
+          <button class="btn btn-success" id="toggleDefenseBtn">Activate Defense Mode</button>
+          <button class="btn btn-outline" id="refreshDashboard">Refresh Data</button>
+        </div>
+      </div>
+      <div style="margin-top: 12px; font-size: 0.85rem; color: #64748b;">
+        Last updated: <span id="lastRefresh">--:--:--</span>
+        <label style="margin-left: 20px;">
+          <input type="checkbox" id="autoRefresh" checked> Auto-refresh (5s)
+        </label>
+      </div>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Activity Monitor</div>
+        <div style="font-size: 2.5rem; font-weight: 600;" id="totalActivities">0</div>
+        <div style="color: #94a3b8;">Total events logged</div>
+        <div style="margin-top: 16px;">
+          <div>Sessions: <span id="sessionCount">0</span></div>
+          <div>Page Views: <span id="pageViewCount">0</span></div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-title">Credentials Captured</div>
+        <div style="font-size: 2.5rem; font-weight: 600; color: #ef4444;" id="capturedCredentials">0</div>
+        <div style="color: #94a3b8;">Phished credentials</div>
+        <button class="btn btn-outline btn-sm" id="exportCredentials" style="margin-top: 16px;">Export Credentials Log</button>
+      </div>
+      
+      <div class="card">
+        <div class="card-title">Security Alerts</div>
+        <div style="font-size: 2.5rem; font-weight: 600; color: #fbbf24;" id="activeAlerts">0</div>
+        <div style="color: #94a3b8;">Unacknowledged alerts</div>
+        <button class="btn btn-outline btn-sm" id="exportActivity" style="margin-top: 16px;">Export Activity Log</button>
+      </div>
+    </div>
+
+    <!-- Alert Log -->
+    <div class="card">
+      <div class="card-title">Alert Log</div>
+      <div id="alertLogContainer" style="max-height: 300px; overflow-y: auto;">
+        <div class="text-muted text-center p-4">Loading alerts...</div>
+      </div>
+    </div>
+
+    <!-- Activity and Credentials Logs -->
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Recent Activity</div>
+        <div id="activityLogContainer" style="max-height: 400px; overflow-y: auto;">
+          <div class="text-muted text-center p-4">Loading activities...</div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-title">Captured Credentials</div>
+        <div id="credentialLogContainer" style="max-height: 400px; overflow-y: auto;">
+          <div class="text-muted text-center p-4">Loading credentials...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions Panel -->
+    <div class="card">
+      <div class="card-title">Defender Actions</div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <button class="btn btn-danger" id="clearLogsBtn">Clear All Logs</button>
+        <a href="../web/index.html" class="btn btn-outline">Return to Lab Entry</a>
+      </div>
+      <div style="margin-top: 16px; padding: 12px; background: #0f172a; border-radius: 8px;">
+        <strong>UML Sequence:</strong> Logger -> Logs -> Dashboard -> Detection -> Defense Trigger -> Block Attack
+      </div>
+    </div>
+  </div>
+
+  <!-- Load logger first (from parent web directory) -->
+  <script src="../web/logger.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

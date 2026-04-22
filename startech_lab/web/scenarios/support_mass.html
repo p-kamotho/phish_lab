@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Mass Attack - StarTech Phishing</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="max-width: 600px; margin: 40px auto;">
+      <div class="card-title">IT Support Ticket System</div>
+      
+      <div style="background: #1e293b; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+        <div class="alert alert-danger" style="margin-bottom: 20px;">
+          TICKET #TKT-2024-8923 - CRITICAL PRIORITY
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+          <strong>Ticket Details:</strong><br>
+          Status: Escalated<br>
+          Priority: P1 - Critical<br>
+          SLA: Breached (15 min overdue)<br>
+          Reported By: Director of Operations<br>
+          Issue: VPN Connection Failure - Cannot Access Critical Systems
+        </div>
+        
+        <div style="background: #0f172a; padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+          <strong>Customer Message:</strong><br>
+          "I cannot connect to VPN. I have an executive presentation in 30 minutes and all my files are on the network. Need immediate resolution!"
+        </div>
+        
+        <form id="supportMassForm">
+          <div class="form-group">
+            <label>Support Agent ID</label>
+            <input type="text" class="form-control" id="agentId" placeholder="AGENT-123" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" id="agentPassword" placeholder="Enter password" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Remote Support Tool</label>
+            <select class="form-control" id="supportTool" required>
+              <option value="">Select tool...</option>
+              <option value="teamviewer">TeamViewer</option>
+              <option value="anydesk">AnyDesk</option>
+              <option value="splashtop">Splashtop</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Response Notes</label>
+            <textarea class="form-control" id="responseNotes" rows="3" placeholder="Enter your response to the customer..."></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-danger" style="width: 100%; background: #ef4444;">Accept Ticket and Respond</button>
+        </form>
+      </div>
+      
+      <div style="margin-top: 20px; padding: 16px; background: #1e293b; border-radius: 8px;">
+        <strong>Queue Status:</strong><br>
+        Open Tickets: 47 | Escalated: 12 | Your Queue: 8
+      </div>
+    </div>
+  </div>
+  
+  <script src="../logger.js"></script>
+  <script>
+    document.getElementById('supportMassForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const agentId = document.getElementById('agentId').value;
+      const password = document.getElementById('agentPassword').value;
+      const tool = document.getElementById('supportTool').value;
+      const notes = document.getElementById('responseNotes').value;
+      
+      PhishLogger.logCredential(agentId, password, 'support_ticket_system');
+      PhishLogger.logActivity('support_mass_attack_success', {
+        agent_id: agentId,
+        remote_tool_selected: tool,
+        notes_length: notes.length,
+        campaign_type: 'mass_sms_targeting_support'
+      });
+      
+      PhishLogger.logAlert('support_credentials_captured', 'high', 
+        `Support agent ${agentId} credentials captured. Remote tool: ${tool}`);
+      
+      if (PhishLogger.isDefenseActive()) {
+        window.location.href = 'defended_attack.html';
+      } else {
+        alert('Ticket accepted. You have been assigned to TKT-2024-8923.');
+        setTimeout(() => {
+          window.location.href = '../index.html';
+        }, 1500);
+      }
+    });
+    
+    PhishLogger.logActivity('support_mass_loaded', { scenario: 'mass_support_phishing' });
+  </script>
+</body>
+</html>

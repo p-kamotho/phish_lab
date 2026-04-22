@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee View - StarTech Phishing Lab</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Employee Dashboard</h1>
+      <span class="badge">General Employee - Victim Persona</span>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Company Announcements</div>
+        
+        <div class="message-bubble received" style="max-width: 100%;">
+          <strong>HR Communications</strong><br>
+          <span style="font-size: 0.85rem; color: #94a3b8;">Posted 2 hours ago</span>
+          <div style="margin-top: 12px;">
+            <strong>2024 Benefits Enrollment Now Open</strong><br>
+            All employees must complete benefits enrollment by January 31st.<br>
+            <a href="../email/hr_update.html" style="color: #60a5fa; display: block; margin-top: 8px;">
+              Click here to review and enroll
+            </a>
+          </div>
+        </div>
+        
+        <div class="message-bubble received" style="max-width: 100%; margin-top: 16px;">
+          <strong>IT Department</strong><br>
+          <span style="font-size: 0.85rem; color: #94a3b8;">Posted yesterday</span>
+          <div style="margin-top: 12px;">
+            <strong>Scheduled Maintenance - VPN Services</strong><br>
+            VPN will be unavailable Saturday 2 AM - 4 AM EST for security updates.
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-title">Quick Actions</div>
+        <div class="nav" style="flex-direction: column;">
+          <a href="../platforms/gmail/inbox.html" class="nav-link">Check Email</a>
+          <a href="../login/hr_portal.html" class="nav-link">Access HR Portal</a>
+          <a href="#" class="nav-link">Submit Timesheet</a>
+          <a href="#" class="nav-link">Request Time Off</a>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-title">Recent Notifications</div>
+        <div style="color: #94a3b8;">
+          <div style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #475569;">
+            <strong>Password Expiration</strong><br>
+            Your password expires in 5 days<br>
+            <a href="../email/it_reset.html" style="color: #60a5fa;">Reset now</a>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <strong>Policy Acknowledgement Required</strong><br>
+            Please review updated acceptable use policy<br>
+            <a href="#" style="color: #60a5fa;">Review policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Company Directory</div>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+        <div>
+          <strong>CFO Office</strong><br>
+          Sarah Chen<br>
+          sarah.chen@startech.com<br>
+          Ext: 2104
+        </div>
+        <div>
+          <strong>IT Support</strong><br>
+          Help Desk<br>
+          it.support@startech.com<br>
+          Ext: 4357
+        </div>
+        <div>
+          <strong>HR Department</strong><br>
+          hr@startech.com<br>
+          Ext: 2200
+        </div>
+      </div>
+    </div>
+
+    <a href="../index.html" class="btn btn-outline">Return to Lab</a>
+  </div>
+
+  <script src="../logger.js"></script>
+  <script>
+    PhishLogger.logActivity('employee_view_accessed', { 
+      persona: 'general_employee', 
+      device: 'workstation',
+      access_time: new Date().toISOString()
+    });
+    
+    // Track which links the employee hovers over
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        if (link.href.includes('email/') || link.href.includes('login/')) {
+          PhishLogger.logActivity('phishing_link_interest', { 
+            link_url: link.href,
+            link_text: link.textContent.trim()
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

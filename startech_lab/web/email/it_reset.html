@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Password Reset - StarTech Phishing</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="max-width: 600px; margin: 40px auto;">
+      <div class="card-title">Security Alert: Password Expiration</div>
+      
+      <div style="background: #1e293b; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+          <strong>From:</strong> IT-Security@startech-itsecure.com<br>
+          <strong>To:</strong> user@startech.com<br>
+          <strong>Subject:</strong> URGENT: Your password expires in 2 hours
+        </div>
+        
+        <div style="border-top: 1px solid #475569; padding-top: 16px;">
+          <div class="alert alert-warning" style="margin-bottom: 20px;">
+            YOUR PASSWORD EXPIRES IN 2 HOURS - IMMEDIATE ACTION REQUIRED
+          </div>
+          
+          <p>Dear User,</p>
+          <p>Our security systems have detected that your corporate password will expire in less than 2 hours. To maintain access to your email, files, and applications, you must reset your password immediately.</p>
+          
+          <div style="background: #0f172a; padding: 16px; border-radius: 8px; margin: 20px 0;">
+            <strong>Account Details:</strong><br>
+            Username: [Your Email Address]<br>
+            Expiration Time: Today at 12:00 PM EST<br>
+            Systems Affected: Office 365, VPN, HR Portal, File Shares
+          </div>
+          
+          <p>Click below to reset your password through the secure portal:</p>
+          
+          <div style="text-align: center; margin: 24px 0;">
+            <a href="../login/microsoft.html" class="btn btn-danger" style="display: inline-block; text-decoration: none; background: #ef4444;">
+              Reset Password Now
+            </a>
+          </div>
+          
+          <p style="color: #ef4444; font-size: 0.9rem;">Failure to reset will result in account lockout requiring IT support intervention.</p>
+          
+          <p>Regards,<br>IT Security Team<br>StarTech Group Solutions</p>
+          
+          <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #475569; font-size: 0.85rem; color: #64748b;">
+            Reference ID: SEC-2024-01-15-8923
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="../logger.js"></script>
+  <script>
+    PhishLogger.logActivity('it_reset_email_viewed', { 
+      campaign: 'credential_harvesting',
+      target: 'all_users',
+      email_type: 'password_reset'
+    });
+  </script>
+</body>
+</html>

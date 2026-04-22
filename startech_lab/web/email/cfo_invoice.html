@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CFO Invoice - StarTech Phishing</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="max-width: 600px; margin: 40px auto;">
+      <div class="card-title">Invoice Payment Request</div>
+      
+      <div style="background: #1e293b; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+          <strong>From:</strong> accounts@techsolutions-inv.com<br>
+          <strong>To:</strong> cfo@startech.com<br>
+          <strong>Subject:</strong> URGENT: Invoice #INV-2024-0892 - Payment Required
+        </div>
+        
+        <div style="border-top: 1px solid #475569; padding-top: 16px;">
+          <p>Dear CFO,</p>
+          <p>Please find attached invoice #INV-2024-0892 for cloud infrastructure services. This invoice is now overdue and requires immediate payment to avoid service interruption.</p>
+          
+          <div style="background: #0f172a; padding: 16px; border-radius: 8px; margin: 20px 0;">
+            <strong>Invoice Summary:</strong><br>
+            Invoice Number: INV-2024-0892<br>
+            Amount Due: $47,892.50<br>
+            Due Date: OVERDUE<br>
+            PO Reference: PO-2024-1123
+          </div>
+          
+          <p>Click the link below to review and authorize payment:</p>
+          
+          <div style="text-align: center; margin: 24px 0;">
+            <a href="../scenarios/finance_attack.html" class="btn btn-primary" style="display: inline-block; text-decoration: none;">
+              View and Pay Invoice
+            </a>
+          </div>
+          
+          <p style="color: #ef4444;">This payment requires CFO authorization. Failure to process may result in service suspension.</p>
+          
+          <p>Regards,<br>Accounts Receivable<br>TechSolutions Inc.</p>
+        </div>
+      </div>
+      
+      <div style="font-size: 0.85rem; color: #64748b; text-align: center;">
+        This email was sent from an external source. Please verify links before clicking.
+      </div>
+    </div>
+  </div>
+  
+  <script src="../logger.js"></script>
+  <script>
+    PhishLogger.logActivity('cfo_invoice_email_viewed', { 
+      campaign: 'finance_phishing',
+      target: 'cfo',
+      email_type: 'invoice_request'
+    });
+    
+    // Track link hover
+    document.querySelector('a').addEventListener('mouseenter', function() {
+      PhishLogger.logActivity('phishing_link_hovered', { 
+        link_text: 'View and Pay Invoice',
+        destination: this.href
+      });
+    });
+  </script>
+</body>
+</html>

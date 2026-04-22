@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Lock Alert - StarTech Phishing</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container" style="max-width: 400px; margin: 20px auto;">
+    <div class="platform-header" style="margin-bottom: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="font-size: 1.5rem;">SMS</div>
+        <div style="color: #94a3b8;">+1 (888) 555-0123</div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="message-bubble received" style="max-width: 100%;">
+        <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px;">Just now</div>
+        
+        <div style="background: #ef4444; color: white; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+          SECURITY ALERT: Account Access Blocked
+        </div>
+        
+        <p style="margin-bottom: 12px;">StarTech Security: Unusual login attempt detected from new location. Your account has been temporarily locked for protection.</p>
+        
+        <div style="background: #1e293b; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+          <strong>Login Attempt Details:</strong><br>
+          Location: Moscow, Russia<br>
+          Time: 5 minutes ago<br>
+          Device: Windows PC<br>
+          IP: 185.xxx.xxx.123
+        </div>
+        
+        <p style="margin-bottom: 16px;">To unlock your account and verify your identity, please visit:</p>
+        
+        <div style="text-align: center; margin: 20px 0;">
+          <a href="../login/microsoft.html" class="btn btn-danger" style="display: inline-block; text-decoration: none;">
+            Verify and Unlock Account
+          </a>
+        </div>
+        
+        <p style="color: #ef4444; font-size: 0.85rem;">Link expires in 30 minutes. If this wasn't you, immediate action is required.</p>
+        
+        <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #475569; font-size: 0.8rem; color: #64748b;">
+          Message ID: SMS-SEC-89234<br>
+          Reply STOP to opt out
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="../logger.js"></script>
+  <script>
+    PhishLogger.logActivity('account_lock_sms_viewed', { 
+      campaign: 'sms_phishing',
+      target: 'mobile_users',
+      sms_type: 'security_alert'
+    });
+  </script>
+</body>
+</html>

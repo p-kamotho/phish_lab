@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Alert - StarTech Phishing</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container" style="max-width: 400px; margin: 20px auto;">
+    <div class="platform-header" style="margin-bottom: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="font-size: 1.5rem;">SMS</div>
+        <div style="color: #94a3b8;">IT Support (Internal)</div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="message-bubble received" style="max-width: 100%;">
+        <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px;">30 minutes ago</div>
+        
+        <div style="background: #fbbf24; color: #0f172a; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+          SUPPORT TICKET ESCALATION: Priority High
+        </div>
+        
+        <p style="margin-bottom: 12px;">Ticket #TKT-2024-8923 has been escalated to your attention.</p>
+        
+        <div style="background: #1e293b; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+          <strong>Ticket Details:</strong><br>
+          Issue: VPN Connection Failure<br>
+          User: Director of Operations<br>
+          Priority: CRITICAL<br>
+          SLA: 15 minutes remaining
+        </div>
+        
+        <p style="margin-bottom: 16px;">Customer reports unable to access critical systems. Immediate resolution required.</p>
+        
+        <div style="text-align: center; margin: 20px 0;">
+          <a href="../scenarios/support_mass.html" class="btn btn-primary" style="display: inline-block; text-decoration: none;">
+            View and Respond to Ticket
+          </a>
+        </div>
+        
+        <p style="color: #fbbf24; font-size: 0.85rem;">SLA breach will trigger management notification.</p>
+        
+        <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #475569; font-size: 0.8rem; color: #64748b;">
+          Automated message from StarTech ITSM System
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="../logger.js"></script>
+  <script>
+    PhishLogger.logActivity('support_alert_sms_viewed', { 
+      campaign: 'sms_phishing',
+      target: 'support_staff',
+      sms_type: 'ticket_escalation'
+    });
+  </script>
+</body>
+</html>

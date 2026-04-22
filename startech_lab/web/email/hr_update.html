@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Update - StarTech Phishing</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="max-width: 600px; margin: 40px auto;">
+      <div class="card-title">HR Policy Update Notification</div>
+      
+      <div style="background: #1e293b; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+          <strong>From:</strong> hr-notifications@startech-hrportal.com<br>
+          <strong>To:</strong> All Employees<br>
+          <strong>Subject:</strong> ACTION REQUIRED: 2024 Policy Updates and Compensation Review
+        </div>
+        
+        <div style="border-top: 1px solid #475569; padding-top: 16px;">
+          <p>Dear Employee,</p>
+          <p>StarTech Group has updated several HR policies effective January 2024. All employees must review and acknowledge these changes within 48 hours.</p>
+          
+          <div style="background: #0f172a; padding: 16px; border-radius: 8px; margin: 20px 0;">
+            <strong>Updated Policies Include:</strong><br>
+            - Remote Work Policy v4.2<br>
+            - Data Privacy and Security Policy<br>
+            - 2024 Compensation Structure<br>
+            - Benefits Enrollment Changes
+          </div>
+          
+          <p>Additionally, your compensation package for 2024 is now available for review. Please access the HR portal to view your updated salary and bonus structure.</p>
+          
+          <div style="text-align: center; margin: 24px 0;">
+            <a href="../scenarios/hr_harvest.html" class="btn btn-primary" style="display: inline-block; text-decoration: none;">
+              Access HR Portal
+            </a>
+          </div>
+          
+          <p style="color: #fbbf24;">Non-compliance will result in temporary system access suspension.</p>
+          
+          <p>Regards,<br>Human Resources Department<br>StarTech Group Solutions</p>
+        </div>
+      </div>
+      
+      <div style="font-size: 0.85rem; color: #64748b; text-align: center;">
+        This is an automated message from StarTech HR Systems.
+      </div>
+    </div>
+  </div>
+  
+  <script src="../logger.js"></script>
+  <script>
+    PhishLogger.logActivity('hr_update_email_viewed', { 
+      campaign: 'hr_data_harvest',
+      target: 'employees',
+      email_type: 'policy_update'
+    });
+  </script>
+</body>
+</html>

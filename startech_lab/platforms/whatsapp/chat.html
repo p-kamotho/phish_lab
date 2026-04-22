@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Chat - StarTech Simulation</title>
+  <link rel="stylesheet" href="../../web/style.css">
+</head>
+<body>
+  <div class="container" style="max-width: 500px; margin: 0 auto;">
+    <div class="platform-header" style="background: #075e54;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="font-size: 1.5rem;">←</div>
+        <div>
+          <h3 style="margin: 0; color: white;">IT Support Team</h3>
+          <div style="font-size: 0.8rem; color: #a5d6a5;">Online</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="background: #0d1b2a; min-height: 500px;">
+      <div style="margin-bottom: 20px;">
+        <div class="message-bubble received" style="background: #1e2f3d;">
+          <strong>IT Support Team</strong><br>
+          <span style="font-size: 0.75rem; color: #7a9bb5;">10:15 AM</span>
+          <div style="margin-top: 8px;">
+            Hello, this is StarTech IT Support. We've detected suspicious activity on your account.
+          </div>
+        </div>
+        
+        <div class="message-bubble received" style="background: #1e2f3d; margin-top: 12px;">
+          <strong>IT Support Team</strong><br>
+          <span style="font-size: 0.75rem; color: #7a9bb5;">10:16 AM</span>
+          <div style="margin-top: 8px;">
+            Someone tried to access your account from an unrecognized device in another country.
+          </div>
+        </div>
+        
+        <div class="message-bubble received" style="background: #1e2f3d; margin-top: 12px;">
+          <strong>IT Support Team</strong><br>
+          <span style="font-size: 0.75rem; color: #7a9bb5;">10:17 AM</span>
+          <div style="margin-top: 8px;">
+            Please verify your account immediately to prevent lockout:
+          </div>
+          <div style="margin-top: 8px; padding: 8px; background: #0a1620; border-radius: 6px;">
+            <a href="../../web/login/microsoft.html" style="color: #60a5fa; word-break: break-all;">
+              https://startech-verify.com/account/security-check
+            </a>
+          </div>
+        </div>
+        
+        <div class="message-bubble received" style="background: #1e2f3d; margin-top: 12px;">
+          <strong>IT Support Team</strong><br>
+          <span style="font-size: 0.75rem; color: #7a9bb5;">10:18 AM</span>
+          <div style="margin-top: 8px;">
+            This is urgent - the link expires in 15 minutes.
+          </div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 30px; padding: 12px; background: #1e2f3d; border-radius: 20px;">
+        <span style="color: #7a9bb5;">Type a message...</span>
+      </div>
+    </div>
+
+    <a href="../../web/index.html" class="btn btn-outline" style="margin-top: 20px;">Return to Lab</a>
+  </div>
+
+  <script src="../../web/logger.js"></script>
+  <script>
+    PhishLogger.logActivity('whatsapp_chat_accessed', { 
+      platform: 'whatsapp', 
+      persona: 'support_staff',
+      chat_type: 'it_support_impersonation'
+    });
+    
+    document.querySelector('a').addEventListener('click', function(e) {
+      PhishLogger.logActivity('whatsapp_link_clicked', {
+        link_url: this.href,
+        campaign: 'whatsapp_phishing',
+        impersonated_entity: 'it_support_team'
+      });
+    });
+    
+    // Auto-log after 5 seconds as read message
+    setTimeout(() => {
+      PhishLogger.logActivity('phishing_message_read', {
+        platform: 'whatsapp',
+        read_duration: '5_seconds',
+        action: 'victim_reading_message'
+      });
+    }, 5000);
+  </script>
+</body>
+</html>

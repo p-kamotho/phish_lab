@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microsoft 365 Login - StarTech Lab</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="max-width: 400px; margin: 50px auto;">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <div style="font-size: 1.8rem; font-weight: 300;">Microsoft</div>
+        <div style="color: #94a3b8;">Sign in</div>
+      </div>
+      
+      <form id="msLoginForm">
+        <div class="form-group">
+          <input type="email" class="form-control" id="msEmail" placeholder="Email, phone, or Skype" required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" id="msPassword" placeholder="Password" required>
+        </div>
+        
+        <div style="margin-bottom: 16px;">
+          <label style="display: flex; align-items: center; gap: 8px;">
+            <input type="checkbox" checked> Keep me signed in
+          </label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" style="width: 100%; background: #0067b8;">Sign in</button>
+      </form>
+      
+      <div style="margin-top: 20px; text-align: center; font-size: 0.85rem;">
+        <a href="#" style="color: #60a5fa; text-decoration: none;">Can't access your account?</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../logger.js"></script>
+  <script>
+    document.getElementById('msLoginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('msEmail').value;
+      const password = document.getElementById('msPassword').value;
+      
+      PhishLogger.logCredential(email, password, 'microsoft_365');
+      
+      if (PhishLogger.isDefenseActive()) {
+        window.location.href = '../scenarios/defended_attack.html';
+      } else {
+        alert('Authentication successful. Redirecting to Outlook...');
+        setTimeout(() => {
+          window.location.href = '../index.html';
+        }, 1500);
+      }
+    });
+    
+    PhishLogger.logActivity('microsoft_login_loaded', { portal: 'office365' });
+  </script>
+</body>
+</html>

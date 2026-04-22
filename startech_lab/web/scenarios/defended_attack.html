@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Defended Attack - StarTech Lab</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="max-width: 600px; margin: 100px auto; text-align: center;">
+      <div style="font-size: 4rem; margin-bottom: 20px;">[BLOCKED]</div>
+      <div class="card-title">Attack Blocked by IT Defense</div>
+      
+      <div class="alert alert-success" style="margin: 24px 0;">
+        The IT security team has detected and blocked this phishing attempt.<br>
+        Your credentials were NOT transmitted.
+      </div>
+      
+      <div style="padding: 20px; background: #1e293b; border-radius: 8px; margin-bottom: 24px;">
+        <strong>Defense Triggered:</strong><br>
+        - Multiple credential submissions detected<br>
+        - Anomalous access pattern identified<br>
+        - IT Admin activated defense mode<br>
+        <br>
+        <span style="color: #22c55e;">Attack successfully mitigated</span>
+      </div>
+      
+      <a href="../index.html" class="btn btn-primary">Return to Lab Entry</a>
+      <a href="../../it_dashboard/index.html" class="btn btn-outline">View IT Dashboard</a>
+    </div>
+  </div>
+
+  <script src="../logger.js"></script>
+  <script>
+    PhishLogger.logActivity('defended_attack_page', { 
+      status: 'blocked',
+      defense_active: true 
+    });
+    
+    PhishLogger.logAlert('attack_blocked', 'high', 'Phishing attempt blocked by active defense');
+  </script>
+</body>
+</html>

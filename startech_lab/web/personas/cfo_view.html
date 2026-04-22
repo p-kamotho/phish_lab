@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CFO View - StarTech Phishing Lab</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>CFO Dashboard</h1>
+      <span class="badge">Finance Executive - Victim Persona</span>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Email Inbox</div>
+      
+      <div class="message-bubble received">
+        <strong>IT Support</strong> &lt;it.support@startech-secure.com&gt;<br>
+        <span style="font-size: 0.85rem; color: #94a3b8;">10:23 AM</span>
+        <div style="margin-top: 8px;">
+          <strong>URGENT: Invoice Payment Required</strong><br>
+          CFO, please review and approve the attached invoice. Click link below to view.<br>
+          <a href="../email/cfo_invoice.html" class="link-preview" style="display: block; text-decoration: none; color: #60a5fa;">
+            View Invoice #INV-2024-0892
+          </a>
+        </div>
+      </div>
+
+      <div class="message-bubble received" style="margin-top: 16px;">
+        <strong>HR Department</strong> &lt;hr@startech-internal.net&gt;<br>
+        <span style="font-size: 0.85rem; color: #94a3b8;">Yesterday</span>
+        <div style="margin-top: 8px;">
+          <strong>Policy Update - Action Required</strong><br>
+          All executives must review updated compensation policies.<br>
+          <a href="../email/hr_update.html" class="link-preview" style="display: block; text-decoration: none; color: #60a5fa;">
+            Access HR Portal
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Recent Activity</div>
+      <div style="color: #94a3b8;">
+        <div>Logged in from: Android Device (Samsung Galaxy)</div>
+        <div>Last login: Today at 09:15 AM</div>
+        <div>Pending approvals: 2 invoices</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <a href="../index.html" class="btn btn-outline">Return to Lab</a>
+    </div>
+  </div>
+
+  <script src="../logger.js"></script>
+  <script>
+    PhishLogger.logActivity('cfo_view_accessed', { persona: 'cfo', device: 'android_phone_2' });
+  </script>
+</body>
+</html>
